@@ -18,9 +18,9 @@ import java.io.InputStream;
  * 七牛云工具类
  */
 public class QiniuUtils {
-    public  static String accessKey = "Ls4rNZmJMVSwQpheTb7cptQrH4XG4ALUgV0KULXl";
-    public  static String secretKey = "6RPUmy2nOwUnK3acWcfDzkWV1jSkPP6hsV_QnzMG";
-    public  static String bucket = "sanwei-health";
+    public  static String accessKey = "*";
+    public  static String secretKey = "*";
+    public  static String bucket = "*";
 
     public static void upload2Qiniu(String filePath,String fileName){
         //构造一个带指定Zone对象的配置类
