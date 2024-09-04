@@ -7,7 +7,7 @@ import com.itheima.pojo.CheckGroup;
 import java.util.List;
 
 /**
- * @Author：蔡洋
+ * @Author：SatanCY
  * @Date：2024/9/3 13:58
  */
 public interface CheckGroupService {

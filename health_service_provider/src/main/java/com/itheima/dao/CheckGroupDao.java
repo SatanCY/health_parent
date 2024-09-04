@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @Author：蔡洋
+ * @Author：SatanCY
  * @Date：2024/9/3 13:58
  */
 public interface CheckGroupDao {
