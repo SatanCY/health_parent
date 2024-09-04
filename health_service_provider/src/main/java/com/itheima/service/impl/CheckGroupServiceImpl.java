@@ -42,8 +42,6 @@ public class CheckGroupServiceImpl implements CheckGroupService {
     @Override
     public void add(CheckGroup checkGroup, Integer[] checkItemIds) {
         checkGroupDao.add(checkGroup);
-        Integer id = checkGroup.getId();
-        System.out.println(id+"============"+checkItemIds.length);
         setCheckGroupAndCheckItem(checkGroup.getId(),checkItemIds);
     }
 
@@ -67,8 +65,13 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         //向中间表(t_checkgroup_checkitem)插入数据（建立检查组和检查项关联关系）
         setCheckGroupAndCheckItem(checkGroup.getId(),checkItemIds);
         //更新检查组基本信息
-        System.out.println(checkGroup.getCode());
         checkGroupDao.edit(checkGroup);
+    }
+
+    @Override
+    public List<CheckGroup> findAll() {
+        List<CheckGroup> checkGroupList = checkGroupDao.findAll();
+        return checkGroupList;
     }
 
     //设置检查组合和检查项的关联关系

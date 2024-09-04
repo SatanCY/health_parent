@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 体检套餐
  */
-public class Setmeal implements Serializable {
+public class SetMeal implements Serializable {
     private Integer id;
     private String name;
     private String code;

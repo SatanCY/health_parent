@@ -25,6 +25,16 @@ public class CheckGroupController {
     @Reference
     private CheckGroupService checkGroupService;
 
+    @RequestMapping("/findAll")
+    public Result findAll() {
+        List<CheckGroup> checkGroupList = checkGroupService.findAll();
+        if (checkGroupList!=null && checkGroupList.size()>0) {
+            return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,checkGroupList);
+        }
+
+        return new Result(false,MessageConstant.QUERY_CHECKGROUP_FAIL);
+    }
+
     @RequestMapping("/findPage")
     public PageResult pageQuery(@RequestBody QueryPageBean queryPageBean) {
         PageResult pageResult = checkGroupService.pageQuery(queryPageBean);
