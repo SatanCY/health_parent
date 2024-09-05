@@ -308,7 +308,7 @@
                 },
                 //编辑
                 handleEdit() {
-                    axios.post("/checkgroup/edit.do?checkitemIds="+this.checkitemIds, this.formData).then((resp) => {
+                    axios.post("/checkgroup/edit.do?checkitemIds=" + this.checkitemIds, this.formData).then((resp) => {
                         if (resp.data.flag) {
                             this.dialogFormVisible4Edit = false;
                             this.$message({
@@ -418,6 +418,20 @@
                 },
                 // 删除
                 handleDelete(row) {
+                    this.$confirm("确认删除当前选中记录吗？", "提示", {type: 'warning'}).then(() => {
+                        // alert("用户点击的是确认按钮");
+                        axios.get("/checkgroup/delete.do?id=" + row.id).then((resp) => {
+                            if (!resp.data.flag) {
+                                this.$message.error(resp.data.message);
+                            } else {
+                                this.$message({
+                                    message: resp.data.message,
+                                    type: 'success'
+                                });
+                                this.findPage();
+                            }
+                        });
+                    });
                 }
             }
         })

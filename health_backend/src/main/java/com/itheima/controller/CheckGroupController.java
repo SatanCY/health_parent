@@ -28,11 +28,11 @@ public class CheckGroupController {
     @RequestMapping("/findAll")
     public Result findAll() {
         List<CheckGroup> checkGroupList = checkGroupService.findAll();
-        if (checkGroupList!=null && checkGroupList.size()>0) {
-            return new Result(true,MessageConstant.QUERY_CHECKGROUP_SUCCESS,checkGroupList);
+        if (checkGroupList != null && checkGroupList.size() > 0) {
+            return new Result(true, MessageConstant.QUERY_CHECKGROUP_SUCCESS, checkGroupList);
         }
 
-        return new Result(false,MessageConstant.QUERY_CHECKGROUP_FAIL);
+        return new Result(false, MessageConstant.QUERY_CHECKGROUP_FAIL);
     }
 
     @RequestMapping("/findPage")
@@ -65,7 +65,6 @@ public class CheckGroupController {
     @RequestMapping("/findCheckItemIdsByCheckGroupId")
     public Result findCheckItemIdsByCheckGroupId(Integer id) {
         try {
-            System.out.println(id);
             List<Integer> checkItemIds = checkGroupService.findCheckItemIdsByCheckGroupId(id);
             return new Result(true, MessageConstant.QUERY_CHECKITEM_SUCCESS, checkItemIds);
         } catch (Exception e) {
@@ -75,13 +74,24 @@ public class CheckGroupController {
     }
 
     @RequestMapping("/edit")
-    public Result edit(@RequestBody CheckGroup checkGroup,@RequestParam("checkitemIds") Integer[] checkItemIds) {
+    public Result edit(@RequestBody CheckGroup checkGroup, @RequestParam("checkitemIds") Integer[] checkItemIds) {
         try {
-            checkGroupService.edit(checkGroup,checkItemIds);
+            checkGroupService.edit(checkGroup, checkItemIds);
         } catch (Exception e) {
-            return new Result(false,MessageConstant.EDIT_CHECKGROUP_FAIL);
+            return new Result(false, MessageConstant.EDIT_CHECKGROUP_FAIL);
         }
-        return new Result(true,MessageConstant.EDIT_CHECKGROUP_SUCCESS);
+        return new Result(true, MessageConstant.EDIT_CHECKGROUP_SUCCESS);
+    }
+
+    @RequestMapping("/delete")
+    public Result delete(Integer id) {
+        try {
+            checkGroupService.delete(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, MessageConstant.DELETE_CHECKGROUP_FAIL);
+        }
+        return new Result(true, MessageConstant.DELETE_CHECKGROUP_SUCCESS);
     }
 
 }

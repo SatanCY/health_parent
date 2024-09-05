@@ -74,6 +74,12 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         return checkGroupList;
     }
 
+    @Override
+    public void delete(Integer id) {
+        checkGroupDao.deleteAssociation(id);
+        checkGroupDao.delete(id);
+    }
+
     //设置检查组合和检查项的关联关系
     public void setCheckGroupAndCheckItem(Integer checkGroupId, Integer[] checkItemIds) {
         if (checkItemIds != null && checkItemIds.length > 0) {
