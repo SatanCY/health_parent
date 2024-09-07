@@ -8,6 +8,7 @@ import com.itheima.entity.Result;
 import com.itheima.pojo.CheckItem;
 import com.itheima.service.CheckItemService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class CheckItemController {
     private CheckItemService checkItemService;
 
     //新增检查项
-    @RequestMapping("/add")
+    @PostMapping("/add")
     public Result add(@RequestBody CheckItem checkItem) {
         try {
             checkItemService.add(checkItem);
@@ -69,7 +70,7 @@ public class CheckItemController {
         return new Result(true, MessageConstant.QUERY_CHECKITEM_SUCCESS, checkItem);
     }
 
-    @RequestMapping("/edit")
+    @PostMapping("/edit")
     public Result edit(@RequestBody CheckItem checkItem) {
         try {
             checkItemService.edit(checkItem);

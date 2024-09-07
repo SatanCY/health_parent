@@ -384,15 +384,20 @@
             },
             //上传图片之前执行
             beforeAvatarUpload(file) {
-                const isJPG = file.type === 'image/jpeg';
-                const isLt2M = file.size / 1024 / 1024 < 2;
-                if (!isJPG) {
-                    this.$message.error('上传套餐图片只能是 JPG 格式!');
+                //file.type不可靠，使用文件名获取后缀名称
+                var index = file.name.lastIndexOf('.');
+                if (index > 0) {
+                    const mime = file.name.substring(index + 1);
+                    const isJPG = mime === 'jpg';
+                    const isLt2M = file.size / 1024 / 1024 < 2;
+                    if (!isJPG) {
+                        this.$message.error('上传套餐图片只能是 JPG 格式!');
+                    }
+                    if (!isLt2M) {
+                        this.$message.error('上传套餐图片大小不能超过 2MB!');
+                    }
+                    return isJPG && isLt2M;
                 }
-                if (!isLt2M) {
-                    this.$message.error('上传套餐图片大小不能超过 2MB!');
-                }
-                return isJPG && isLt2M;
             },
             handleEdit() {
                 axios.post("/setmeal/edit.do?checkGroupIds=" + this.checkgroupIds, this.formData).then((resp) => {

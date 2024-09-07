@@ -74,10 +74,16 @@ public class CheckGroupServiceImpl implements CheckGroupService {
         return checkGroupList;
     }
 
+    //删除检查组，需要查询与套餐的关联关系
     @Override
     public void delete(Integer id) {
-        checkGroupDao.deleteAssociation(id);
-        checkGroupDao.delete(id);
+        Long count = checkGroupDao.selectCountByCheckGroupId(id);
+        if (count>0) {
+            throw new RuntimeException("当前检查组被引用，不能删除");
+        } else {
+            checkGroupDao.deleteAssociation(id);
+            checkGroupDao.delete(id);
+        }
     }
 
     //设置检查组合和检查项的关联关系

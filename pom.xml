@@ -12,6 +12,7 @@
         <module>health_interface</module>
         <module>health_service_provider</module>
         <module>health_backend</module>
+        <module>health_jobs</module>
     </modules>
     <packaging>pom</packaging>
     <!-- 集中定义依赖版本号 -->
@@ -32,7 +33,7 @@
         <spring.security.version>5.0.5.RELEASE</spring.security.version>
         <poi.version>3.14</poi.version>
         <jedis.version>4.0.1</jedis.version>
-        <quartz.version>2.2.1</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
     </properties>
     <!-- 依赖管理标签  必须加 -->
     <dependencyManagement>

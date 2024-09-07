@@ -41,12 +41,15 @@ public class SetMealController {
             String originalFilename = imgFile.getOriginalFilename();
             int lastIndexOf = originalFilename.lastIndexOf(".");
             //获取文件后缀
-            String suffix = originalFilename.substring(lastIndexOf - 1);
+            String suffix = originalFilename.substring(lastIndexOf);
             //使用UUID随机产生文件名称，防止同名文件覆盖
             String fileName = UUID.randomUUID().toString() + suffix;
             QiniuUtils.upload2Qiniu(imgFile.getBytes(), fileName);
             //将上传图片名称存入Redis，基于Redis的Set集合存储
             jedisPool.getResource().sadd(RedisConstant.SET_MEAL_PIC_RESOURCES, fileName);
+//            System.out.println(jedisPool.getResource().smembers(RedisConstant.SET_MEAL_PIC_RESOURCES));
+//            System.out.println(jedisPool.getResource().smembers(RedisConstant.SET_MEAL_PIC_DB_RESOURCES));
+//            System.out.println(jedisPool.getResource().sdiff(RedisConstant.SET_MEAL_PIC_RESOURCES, RedisConstant.SET_MEAL_PIC_DB_RESOURCES));
             //图片上传成功
             return new Result(true, MessageConstant.PIC_UPLOAD_SUCCESS, fileName);
         } catch (Exception e) {

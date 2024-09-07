@@ -98,17 +98,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    
 }
 
 .days li {
     height: 160px;
-    list-style-type: none;
-    display: inline-block;
-    width: 14%;
-    text-align: right;
-    font-size: 1rem;
-    color: #000;
     list-style-type: none;
     display: inline-block;
     width: 14.2%;
@@ -124,8 +117,16 @@
 }
 .everyday .datenumber {
     position: absolute;
-    right: 10px;
+    font-size: large;
+    left: 10px;
     top: 10px;
+}
+.everyday .datenumber-today {
+    position: absolute;
+    font-size: large;
+    left: 10px;
+    top: 10px;
+    color: #dd6161;
 }
 .everyday .usual {
     height: 100%;
