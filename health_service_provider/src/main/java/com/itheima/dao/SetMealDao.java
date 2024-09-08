@@ -30,4 +30,7 @@ public interface SetMealDao {
     void edit(SetMeal setMeal);
 
     String findImage(Integer id);
+
+    List<SetMeal> findAll();
+
 }

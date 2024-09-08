@@ -24,4 +24,7 @@ public interface SetMealService {
     void edit(SetMeal setMeal, Integer[] checkGroupIds);
 
     String findImage(Integer id);
+
+    List<SetMeal> findAll();
+
 }

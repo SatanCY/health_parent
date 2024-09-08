@@ -81,12 +81,20 @@ public class SetMealServiceImpl implements SetMealService {
         setMealDao.edit(setMeal);
         setMealDao.deleteAssociation(setMeal.getId());
         setSetMealAndCheckGroup(setMeal.getId(),checkGroupIds);
+        //将图片名称保存到Redis
+        savePic2Redis(setMeal.getImg());
     }
 
     @Override
     public String findImage(Integer id) {
         String image = setMealDao.findImage(id);
         return image;
+    }
+
+    @Override
+    public List<SetMeal> findAll() {
+        List<SetMeal> setMealList =  setMealDao.findAll();
+        return setMealList;
     }
 
     private void savePic2Redis(String pic) {

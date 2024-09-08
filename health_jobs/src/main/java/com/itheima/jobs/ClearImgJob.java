@@ -20,7 +20,10 @@ public class ClearImgJob {
 
     //根据Redis中保存的两个set集合进行差值计算，获得垃圾图片名称集合
     public void clearImg() {
+        System.out.println("已保存的："+jedisPool.getResource().smembers(RedisConstant.SET_MEAL_PIC_DB_RESOURCES));
+        System.out.println("已上传的："+jedisPool.getResource().smembers(RedisConstant.SET_MEAL_PIC_RESOURCES));
         Set<String> set = jedisPool.getResource().sdiff(RedisConstant.SET_MEAL_PIC_RESOURCES, RedisConstant.SET_MEAL_PIC_DB_RESOURCES);
+        System.out.println("未保存的："+set);
         if (set != null) {
             for (String picName : set) {
                 System.out.println(picName);

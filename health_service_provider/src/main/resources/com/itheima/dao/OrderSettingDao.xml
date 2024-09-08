@@ -9,6 +9,10 @@
         select count(*) from t_ordersetting where orderDate = #{orderDate}
     </select>
 
+    <select id="findByOrderDate" parameterType="java.util.Date" resultType="com.itheima.pojo.OrderSetting">
+        select * from t_ordersetting where orderDate = #{orderDate}
+    </select>
+
     <!--新增-->
     <insert id="add" parameterType="com.itheima.pojo.OrderSetting">
         insert into t_ordersetting(orderDate, number, reservations)
@@ -18,6 +22,11 @@
     <!--根据日期更新预约人数-->
     <update id="editNumberByOrderDate" parameterType="com.itheima.pojo.OrderSetting">
         update t_ordersetting set number = #{number} where orderDate = #{orderDate}
+    </update>
+
+    <!--根据日期更新已预约人数-->
+    <update id="editReservationsByOrderDate" parameterType="com.itheima.pojo.OrderSetting">
+        update t_ordersetting set reservations = #{reservations} where orderDate = #{orderDate}
     </update>
 
     <select id="getOrderSettingByMonth" parameterType="hashmap" resultType="com.itheima.pojo.OrderSetting">
